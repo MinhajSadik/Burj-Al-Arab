@@ -6,7 +6,7 @@ const Booking = () => {
   // eslint-disable-next-line no-unused-vars
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   useEffect(() => {
-    fetch("http://localhost:5000/booking?email=" + loggedInUser.email)
+    fetch("http://localhost:3100/booking?email=" + loggedInUser.email)
       .then((res) => res.json())
       .then((data) => setBooking(data));
   }, [loggedInUser.email]);
