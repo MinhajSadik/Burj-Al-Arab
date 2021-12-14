@@ -12,7 +12,6 @@ import Booking from "./Booking";
 
 const Book = () => {
   const { bedType } = useParams();
-  // eslint-disable-next-line no-unused-vars
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
   const [selectedDate, setSelectedDate] = useState({

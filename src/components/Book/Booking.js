@@ -1,23 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../App";
 
 const Booking = () => {
   const [booking, setBooking] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   useEffect(() => {
-    fetch("http://localhost:3100/booking?email=" + loggedInUser.email)
+    fetch("http://localhost:3100/booking?email=" + loggedInUser.email, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setBooking(data));
   }, [loggedInUser.email]);
   return (
     <div>
       <h3>You Have: {booking.length} Bookings</h3>
-      {booking.map((book) => (
-        <li>
-          {book.name}
-          ==from: {new Date(book.checkIn).toDateString("dd/MM/yyyy")}
-          ==to:{new Date(book.checkOut).toDateString("dd/MM/yyyy")}{" "}
+      {booking.map((booking) => (
+        <li key={booking._id}>
+          {booking.name}
+          ==from: {new Date(booking.checkIn).toDateString("dd/MM/yyyy")}
+          ==to:{new Date(booking.checkOut).toDateString("dd/MM/yyyy")}{" "}
         </li>
       ))}
     </div>
