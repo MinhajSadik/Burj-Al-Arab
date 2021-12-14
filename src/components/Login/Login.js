@@ -27,9 +27,7 @@ const Login = () => {
         const signedInUser = { name: displayName, email };
         setLoggedInUser(signedInUser);
         storeAuthToken();
-        history.replace(from);
       })
-
       .catch((error) => {
         const errorMessage = error.message;
         console.log(errorMessage);
@@ -42,7 +40,7 @@ const Login = () => {
       .currentUser.getIdToken(true)
       .then((idToken) => {
         sessionStorage.setItem("token", idToken);
-        console.log("idToken", idToken);
+        history.replace(from);
       });
   };
 

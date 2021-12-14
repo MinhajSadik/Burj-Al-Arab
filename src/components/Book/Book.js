@@ -55,7 +55,7 @@ const Book = () => {
       </p>
 
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Grid container justify="space-around">
+        <Grid container justifyContent="space-around">
           <KeyboardDatePicker
             disableToolbar
             variant="inline"
